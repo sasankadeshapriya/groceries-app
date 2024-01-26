@@ -21,7 +21,7 @@ class CoustomButton extends StatelessWidget {
         width: 259,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: AppColor.primaryColor,
+          color: AppColor.greenColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: CustomText(text: btnText,color: AppColor.whiteColor,fontSize: 18,fontWeight: FontWeight.w600,),

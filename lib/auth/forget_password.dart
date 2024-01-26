@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/auth/login.dart';
 import 'package:groceries_flutter_app/components/coustom_button.dart';
 import 'package:groceries_flutter_app/components/coustom_textfield.dart';
@@ -32,7 +33,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               children: [
                 const SizedBox(height: 52,),
                 const CustomText(text: "Forgot Password",color: AppColor.primaryColor, fontSize: 30,fontWeight: FontWeight.w500),
-                Image.asset(AppComponents.splashLogo, width: 202, height: 138,),
+                const SizedBox(height: 25,),
+                SvgPicture.asset(AppComponents.signUp, width: 175, height: 175),
                 const SizedBox(height: 100,),
                 const CustomText(text: "Please enter your email to receive password reset mail!", fontSize: 14),
                 const SizedBox(height: 8,),

@@ -1,8 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/auth/signup.dart';
-import 'package:groceries_flutter_app/components/custom_text.dart';
-import 'package:groceries_flutter_app/utils/app_colors.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';
 
@@ -33,10 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             FadeInDown(
               // delay: const Duration(seconds: 1),
-              child: Image.asset(AppComponents.splashLogo, width: 200,)
+              child: SvgPicture.asset(AppComponents.logoIcon, width: 123, height: 123),
             ),
             const SizedBox(height: 30,),
-            FadeInUp(child: const CustomText(text: "ELEGANCE SKL GROCERIES",color: AppColor.primaryColor, fontSize: 35,fontWeight: FontWeight.w500,textAlign: TextAlign.center)),
+            FadeInUp(child: SvgPicture.asset(AppComponents.logoText,),),
           ],
         ),
       ),

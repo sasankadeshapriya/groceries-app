@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Elegance Groceries',
+      title: 'Kede Groceries',
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
