@@ -5,7 +5,7 @@ import 'package:groceries_flutter_app/components/coustom_button.dart';
 import 'package:groceries_flutter_app/components/coustom_textfield.dart';
 import 'package:groceries_flutter_app/components/custom_text.dart';
 import 'package:groceries_flutter_app/components/social_button.dart';
-import 'package:groceries_flutter_app/main/home/main_screen.dart';
+import 'package:groceries_flutter_app/main/main_screen.dart';
 import 'package:groceries_flutter_app/utils/app_colors.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';

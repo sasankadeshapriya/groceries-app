@@ -8,5 +8,5 @@ class AppColor{
   static const ashColor = Color(0xff989898);
   static const whiteColor = Color(0xffffffff);
   static const redColor = Colors.red;
-
+  static const ashColorSub = Color(0xffCDD3CE);
 }
