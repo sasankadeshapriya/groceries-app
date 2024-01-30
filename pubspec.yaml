@@ -40,6 +40,8 @@ dependencies:
   responsive_framework: ^1.1.1
   animate_do: ^3.2.0
   firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

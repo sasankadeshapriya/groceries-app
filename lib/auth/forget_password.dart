@@ -16,6 +16,9 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+
+  final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -38,7 +41,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 const SizedBox(height: 100,),
                 const CustomText(text: "Please enter your email to receive password reset mail!", fontSize: 14),
                 const SizedBox(height: 8,),
-                const CoustomTextField(hintText: "Email"),
+                CoustomTextField(hintText: "Email",controller: emailController),
                 const SizedBox(height: 16,),
                 InkWell(
                   onTap: () => UtilFunctions.navigateTo(context, const Login()),

@@ -6,10 +6,12 @@ class CoustomTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     this.isObscure = false,
+    required this.controller,
   });
 
   final String hintText;
   final bool isObscure;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class CoustomTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        controller: controller,
         obscureText: isObscure,
         decoration: InputDecoration(
           hintText: hintText,

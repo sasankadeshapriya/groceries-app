@@ -16,6 +16,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -36,11 +41,11 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(height: 25,),
                 SvgPicture.asset(AppComponents.signUp, width: 175, height: 175),
                 const SizedBox(height: 32,),
-                const CoustomTextField(hintText: "Name"),
+                CoustomTextField(hintText: "Name",controller: nameController),
                 const SizedBox(height: 8,),
-                const CoustomTextField(hintText: "Email"),
+                CoustomTextField(hintText: "Email",controller: emailController),
                 const SizedBox(height: 8,),
-                const CoustomTextField(hintText: "Password", isObscure: true),
+                CoustomTextField(hintText: "Password", isObscure: true, controller: passwordController),
                 const SizedBox(height: 16,),
                 InkWell(
                   onTap: () => UtilFunctions.navigateTo(context, const Login()),
