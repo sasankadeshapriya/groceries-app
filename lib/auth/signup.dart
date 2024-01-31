@@ -1,12 +1,17 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/auth/login.dart';
+import 'package:groceries_flutter_app/components/aleart_dialogbox.dart';
 import 'package:groceries_flutter_app/components/coustom_button.dart';
 import 'package:groceries_flutter_app/components/coustom_textfield.dart';
 import 'package:groceries_flutter_app/components/custom_text.dart';
+import 'package:groceries_flutter_app/controllers/auth_controller.dart';
 import 'package:groceries_flutter_app/utils/app_colors.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';
+import 'package:logger/logger.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({ Key? key }) : super(key: key);
@@ -58,13 +63,36 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 const SizedBox(height: 29,),
-                CoustomButton(btnText: "SignUp", onTap: (){}),
+                CoustomButton(btnText: "SignUp", onTap: () async {
+                  if(validateFiled()){
+                    Logger().i("Validate Success");
+                    await AuthController().registerUser(context,emailController.text,passwordController.text);
+                  }else{
+                    Logger().i("Validate Faild");
+                  }
+                }),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+
+  bool validateFiled() {
+    if(nameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please fill all fields!');
+      return false;
+    }else if(!emailController.text.contains('@')){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please enter valid email address!');
+      return false;    
+    }else if(passwordController.text.length < 6){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please enter valid email address!');
+      return false;    
+    }else{
+      return true;
+    }
   }
 }
 
