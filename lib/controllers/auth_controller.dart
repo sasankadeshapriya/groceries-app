@@ -17,7 +17,6 @@ class AuthController{
           AleartBox.showAleart(context,DialogType.success,'SUCCESS','Account created success!');
         }
       });
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         // ignore: use_build_context_synchronously

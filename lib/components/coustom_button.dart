@@ -7,24 +7,29 @@ class CoustomButton extends StatelessWidget {
     super.key,
     required this.btnText,
     required this.onTap,
+    this.isLoading = false,
   });
 
   final String btnText;
   final Function() onTap;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 50,
-        width: 259,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppColor.greenColor,
-          borderRadius: BorderRadius.circular(8),
+    return IgnorePointer(
+      ignoring: isLoading,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          height: 50,
+          width: 259,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: AppColor.greenColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: isLoading? const CircularProgressIndicator(color: AppColor.whiteColor,) : CustomText(text: btnText,color: AppColor.whiteColor,fontSize: 18,fontWeight: FontWeight.w600,),
         ),
-        child: CustomText(text: btnText,color: AppColor.whiteColor,fontSize: 18,fontWeight: FontWeight.w600,),
       ),
     );
   }

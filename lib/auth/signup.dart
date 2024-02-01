@@ -26,6 +26,8 @@ class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
   final nameController = TextEditingController();
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
 
@@ -63,10 +65,23 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 const SizedBox(height: 29,),
-                CoustomButton(btnText: "SignUp", onTap: () async {
+                CoustomButton( isLoading: isLoading, btnText: "SignUp", onTap: () async {
                   if(validateFiled()){
-                    Logger().i("Validate Success");
+
+                    setState(() {
+                      isLoading = true;
+                    });
+
                     await AuthController().registerUser(context,emailController.text,passwordController.text);
+
+                    emailController.clear();
+                    nameController.clear();
+                    passwordController.clear();
+
+                    setState(() {
+                      isLoading = false;
+                    });     
+
                   }else{
                     Logger().i("Validate Faild");
                   }
