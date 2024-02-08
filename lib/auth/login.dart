@@ -1,14 +1,18 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/auth/forget_password.dart';
+import 'package:groceries_flutter_app/components/aleart_dialogbox.dart';
 import 'package:groceries_flutter_app/components/coustom_button.dart';
 import 'package:groceries_flutter_app/components/coustom_textfield.dart';
 import 'package:groceries_flutter_app/components/custom_text.dart';
 import 'package:groceries_flutter_app/components/social_button.dart';
+import 'package:groceries_flutter_app/controllers/auth_controller.dart';
 import 'package:groceries_flutter_app/main/main_screen.dart';
 import 'package:groceries_flutter_app/utils/app_colors.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';
+import 'package:logger/logger.dart';
 
 class Login extends StatefulWidget {
   const Login({ Key? key }) : super(key: key);
@@ -21,6 +25,8 @@ class _LoginState extends State<Login> {
 
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +63,25 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 const SizedBox(height: 29,),
-                CoustomButton(btnText: "Login", onTap: (){
-                  UtilFunctions.navigateTo(context, const MainScreen());
+                CoustomButton(isLoading: isLoading, btnText: "Login", onTap: () async {
+                  if(validateFiled()){
+
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    await AuthController().signInUser(context,emailController.text,passwordController.text);
+
+                    emailController.clear();
+                    passwordController.clear();
+
+                    setState(() {
+                      isLoading = false;
+                    });     
+
+                  }else{
+                    Logger().i("Validate Faild");
+                  }
                 }),
                 const SizedBox(height: 23,),
                 const CustomText(text: "or login with social account",fontSize: 14,),
@@ -78,6 +101,22 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  bool validateFiled() {
+    if(emailController.text.isEmpty || passwordController.text.isEmpty){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please fill all fields!');
+      return false;
+    }else if(!emailController.text.contains('@')){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please enter valid email address!');
+      return false;    
+    }else if(passwordController.text.length < 6){
+      AleartBox.showAleart(context,DialogType.error,'ERROR','Please enter valid email address!');
+      return false;    
+    }else{
+      return true;
+    }
+  }
+
 }
 
 

@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBvKXvX42EL8XzSTdOcvt6Hgkc13Fljv9k',
+    appId: '1:1074694647962:web:d0d2fc8fa4ecc3bfd72f23',
+    messagingSenderId: '1074694647962',
+    projectId: 'grocery-app-d3079',
+    authDomain: 'grocery-app-d3079.firebaseapp.com',
+    storageBucket: 'grocery-app-d3079.appspot.com',
+    measurementId: 'G-NYBJLQ8WPL',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDuO0GUhC74SnZmltt9snbWL_QcM_3v6pI',
     appId: '1:1074694647962:android:6e2ae2a7cfce4436d72f23',
@@ -64,5 +68,14 @@ class DefaultFirebaseOptions {
     projectId: 'grocery-app-d3079',
     storageBucket: 'grocery-app-d3079.appspot.com',
     iosBundleId: 'com.example.groceriesFlutterApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCBfJgBshnF1xG0MPaDmvrVGNZ23gETLAo',
+    appId: '1:1074694647962:ios:54abedc63af99446d72f23',
+    messagingSenderId: '1074694647962',
+    projectId: 'grocery-app-d3079',
+    storageBucket: 'grocery-app-d3079.appspot.com',
+    iosBundleId: 'com.example.groceriesFlutterApp.RunnerTests',
   );
 }
