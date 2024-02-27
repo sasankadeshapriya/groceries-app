@@ -71,5 +71,11 @@ class AuthController{
     await FirebaseAuth.instance.signOut();
   }
 
+  Future<void> sendPasswordResetEmail(BuildContext context, String email) async{
+    await FirebaseAuth.instance
+    .sendPasswordResetEmail(email: email).then((value){
+      AleartBox.showAleart(context, DialogType.success, "Email sent", "Check your inbox");
+    });
+  }
 
 }
