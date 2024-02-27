@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/auth/signup.dart';
+import 'package:groceries_flutter_app/controllers/auth_controller.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';
 
@@ -18,9 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 5),(){
-      UtilFunctions.navigateTo(context, const SignUp());
-    });
+    // Future.delayed(const Duration(seconds: 5),(){
+    //   UtilFunctions.navigateTo(context, const SignUp());
+    // });
+
+    AuthController().initializeUser(context);
   }
 
   @override

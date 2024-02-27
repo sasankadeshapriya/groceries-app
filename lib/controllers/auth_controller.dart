@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groceries_flutter_app/auth/signup.dart';
 import 'package:groceries_flutter_app/components/aleart_dialogbox.dart';
 import 'package:groceries_flutter_app/main/main_screen.dart';
 import 'package:groceries_flutter_app/utils/util_function.dart';
@@ -14,11 +15,7 @@ class AuthController{
       final credential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
-      ).then((value) {
-        if(value.user != null){
-          UtilFunctions.navigateTo(context, const MainScreen());
-        }
-      });
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         // ignore: use_build_context_synchronously
@@ -58,4 +55,21 @@ class AuthController{
     }
   }
   
+  Future<void> initializeUser(BuildContext context) async{
+      FirebaseAuth.instance
+      .authStateChanges()
+      .listen((User? user) {
+        if (user == null) {
+          UtilFunctions.navigateTo(context, const SignUp());
+        } else {
+          UtilFunctions.navigateTo(context, const MainScreen());
+        }
+      });
+  }
+  
+  Future<void> logout() async{
+    await FirebaseAuth.instance.signOut();
+  }
+
+
 }

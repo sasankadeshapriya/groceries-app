@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groceries_flutter_app/components/custom_text.dart';
+import 'package:groceries_flutter_app/controllers/auth_controller.dart';
 import 'package:groceries_flutter_app/main/home/widget/product_grid.dart';
 import 'package:groceries_flutter_app/utils/app_colors.dart';
 import 'package:groceries_flutter_app/utils/app_components.dart';
@@ -24,7 +25,14 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SvgPicture.asset(AppComponents.menuIcon),
-              SvgPicture.asset(AppComponents.basketIcon),
+              Row(
+                children: [
+                  SvgPicture.asset(AppComponents.basketIcon),
+                  IconButton(onPressed: (){
+                    AuthController().logout();
+                  }, icon: const Icon(Icons.logout)),
+                ],
+              ),
             ],
            ),
           const CustomText(text: "Fruits",fontSize: 20,fontWeight: FontWeight.w600,color: AppColor.primaryColor),
